@@ -1,9 +1,17 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { KeycloakService } from 'keycloak-angular';
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { KeycloakBearerInterceptorProvider, KeycloakInitializerProvider } from './keycloak.config';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration()]
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    KeycloakInitializerProvider,
+    KeycloakBearerInterceptorProvider,
+    KeycloakService,
+    provideRouter(routes)
+  ]
 };

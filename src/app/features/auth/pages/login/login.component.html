@@ -1,0 +1,24 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <label>
+      Username:
+      <input type="text" formControlName="username" />
+    </label>
+
+    <label>
+      Password:
+      <input type="password" formControlName="password" />
+    </label>
+
+    <!-- <button type="submit" [disabled]="false">Login</button> -->
+</form>
+</div>
+
+<button (click)="onLogin()">login</button>
+<button (click)="onLogout()">logout</button>
+
+<a [routerLink]="['/dashboard']">
+  link to user component
+</a>
+
+<p>{{isLoggedIn}}</p>
